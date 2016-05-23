@@ -10,15 +10,26 @@ import {AOService} from './ao.service';
 })
 export class AODetailComponent implements OnInit {
     ao: AO;
+    navigated: boolean;
 
     constructor(
         private aoService: AOService,
-        private routeParams: RouteParams) {
-    }
+        private routeParams: RouteParams) {}
 
     ngOnInit() {
-        let id = +this.routeParams.get('id');
-        this.aoService.getItemFromId(id).then(response => this.ao = response);
+        if (this.routeParams.get('id') !== null) {
+            this.navigated = true;
+            let id = +this.routeParams.get('id');
+            this.aoService.getItemFromId(id).then(response => this.ao = response);
+        } else {
+            this.navigated = false;
+            this.ao = new AO();
+        }
+    }
+
+    save() {
+        this.aoService.save(this.ao).then(ao => this.ao = ao);
+        this.retour();
     }
 
     retour() {

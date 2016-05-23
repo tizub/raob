@@ -4,7 +4,7 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-
 import {HeaderComponent} from './header.component';
 import {AccueilComponent} from "./accueil.component";
 import {AOService} from './ao.service';
-import {AOListComponent} from "./ao-list.component";
+import {AOListeComponent} from "./ao-liste.component";
 import {AODetailComponent} from "./ao-detail.component";
 
 @Component({
@@ -22,9 +22,9 @@ import {AODetailComponent} from "./ao-detail.component";
     }, {
 		path: '/ao/liste',
 		name: 'AO-liste',
-		component: AOListComponent
+		component: AOListeComponent
 	}, {
-        path: '/ao/detail/:id',
+        path: '/ao/detail',
         name: 'AO-detail',
         component: AODetailComponent
     }

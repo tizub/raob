@@ -1,8 +1,10 @@
-<div *ngIf="ao" class="raob-ao-detail">
-    <div>Titre : {{ao.titre}}</div>
-    <div>Client : {{ao.client}}</div>
-    <div>Date de réception : {{ao.dateReception}}</div>
-    <div>Date de réponse : {{ao.dateReponse}}</div>
-    <div></div>
-</div>
 <button (click)="retour()">Retour</button>
+<div *ngIf="ao" class="raob-ao-detail">
+    <br/>
+    <div><label>Titre&nbsp;: </label>&nbsp;<input [(ngModel)]="ao.titre"></div>
+    <div><label>Client&nbsp;: </label>&nbsp;<input [(ngModel)]="ao.client"></div>
+    <div><label>Date de réception&nbsp;: </label>&nbsp;<input [(ngModel)]="ao.dateReception"></div>
+    <div><label>Date de réponse&nbsp;: </label>&nbsp;<input [(ngModel)]="ao.dateReponse"></div>
+    <br/>
+    <button (click)="save()">Enregistrer</button>
+</div>

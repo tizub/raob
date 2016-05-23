@@ -7,14 +7,15 @@ import {GridOptions} from "ag-grid/main";
 @Component({
 	selector: 'raob-ao-list',
 	template: `
+	    <button (click)="nouveau()">Nouvel AO</button>
+	    <br/><br/>
 		<ag-grid-ng2 #agGrid class="ag-fresh" [gridOptions]="gridOptions"
 		    (rowClicked)="detail($event)">
 		</ag-grid-ng2>
 		`,
     directives: [AgGridNg2]
 })
-export class AOListComponent implements OnInit {
-    self = this;
+export class AOListeComponent implements OnInit {
     columnDefs = [
         {headerName: 'Titre', field: "titre"},
         {headerName: 'Client', field: "client"},
@@ -30,8 +31,7 @@ export class AOListComponent implements OnInit {
             columnDefs: this.columnDefs,
             enableColResize: true,
             enableSorting: true,
-            enableFilter: true/*,
-            onRowClicked: this.detail*/
+            enableFilter: true
         };
     }
 
@@ -40,7 +40,11 @@ export class AOListComponent implements OnInit {
     }
 
     getData() {
-        return this.aoService.getList().then(response => this.gridOptions.api.setRowData(response));
+        return this.aoService.getList().then(response => {this.gridOptions.api.setRowData(response)}, () => {});
+    }
+
+    nouveau() {
+        this.router.navigate(['AO-detail']);
     }
 
     detail(event: any) {
