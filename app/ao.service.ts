@@ -50,6 +50,7 @@ export class AOService {
         return this.http
             .delete(`${this.apiUrl}/${ao.id}`, {headers: this.headers})
             .toPromise()
+            .then(() => ao)
             .catch(this.handleError);
     }
 

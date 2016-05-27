@@ -1,0 +1,5 @@
+<button (click)="nouveau()">Nouvel AO</button>
+<br/><br/>
+<ag-grid-ng2 #agGrid class="ag-fresh" [gridOptions]="gridOptions"
+    (rowClicked)="detail($event)">
+</ag-grid-ng2>

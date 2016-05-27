@@ -6,13 +6,7 @@ import {GridOptions} from "ag-grid/main";
 
 @Component({
 	selector: 'raob-ao-list',
-	template: `
-	    <button (click)="nouveau()">Nouvel AO</button>
-	    <br/><br/>
-		<ag-grid-ng2 #agGrid class="ag-fresh" [gridOptions]="gridOptions"
-		    (rowClicked)="detail($event)">
-		</ag-grid-ng2>
-		`,
+	templateUrl: 'app/ao-liste.component.html',
     directives: [AgGridNg2]
 })
 export class AOListeComponent implements OnInit {
@@ -26,7 +20,6 @@ export class AOListeComponent implements OnInit {
 
     constructor(private router: Router,
                 private aoService: AOService) {
-        this.aoService = aoService;
         this.gridOptions = {
             columnDefs: this.columnDefs,
             enableColResize: true,
@@ -40,7 +33,7 @@ export class AOListeComponent implements OnInit {
     }
 
     getData() {
-        return this.aoService.getList().then(response => {this.gridOptions.api.setRowData(response)}, () => {});
+        this.aoService.getList().then(response => {this.gridOptions.api.setRowData(response)}, () => {});
     }
 
     nouveau() {

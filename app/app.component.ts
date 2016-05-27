@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {HeaderComponent} from './header.component';
 import {AccueilComponent} from "./accueil.component";
@@ -18,15 +18,26 @@ import {AODetailComponent} from "./ao-detail.component";
         path: '/accueil',
         name: 'Accueil',
         component: AccueilComponent,
+        data: {label: 'Accueil'},
         useAsDefault: true
     }, {
 		path: '/ao/liste',
 		name: 'AO-liste',
-		component: AOListeComponent
+		component: AOListeComponent,
+        data: {label: 'Liste des AO', sublabel: 'AO en cours'}
 	}, {
         path: '/ao/detail',
         name: 'AO-detail',
-        component: AODetailComponent
+        component: AODetailComponent,
+        data: {label: 'Détail de l\'AO'}
     }
 ])
-export class RAObayAppComponent { }
+export class RAObayAppComponent {
+    currentRouteData: Object;
+
+    constructor(private router: Router) {
+        this.router.subscribe(() => {
+            this.currentRouteData = this.router.currentInstruction.component.routeData.data;
+        });
+    }
+}
